@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   FadeInDown,
@@ -24,6 +31,8 @@ const ProductCard = ({
   showSuccess,
 }: CardProductProps) => {
   const scale = useSharedValue(1);
+  const { width } = Dimensions.get("window");
+  const CARD_WIDTH = (width - 48) / 2;
 
   const tapGesture = Gesture.Tap()
     .onStart(() => {
@@ -55,7 +64,7 @@ const ProductCard = ({
   return (
     <Animated.View
       entering={FadeInDown.delay(index * 50).springify()}
-      style={[styles.cardWrapper, animatedStyle]}
+      style={[{ width: CARD_WIDTH, marginBottom: 16 }, animatedStyle]}
     >
       <GestureDetector gesture={tapGesture}>
         <TouchableOpacity
@@ -118,18 +127,14 @@ const ProductCard = ({
                 <Text style={styles.addButtonText}>
                   {showSuccess ? "✓" : "+"}
                 </Text>
+                {showSuccess && (
+                  <View style={styles.iconAlert}>
+                    <Text style={styles.iconAlertText}></Text>
+                  </View>
+                )}
               </TouchableOpacity>
             </View>
           </View>
-
-          {showSuccess && (
-            <View style={styles.successOverlay}>
-              <View style={styles.successContent}>
-                <Text style={styles.successIcon}>✓</Text>
-                <Text style={styles.successText}>Ajouté</Text>
-              </View>
-            </View>
-          )}
         </TouchableOpacity>
       </GestureDetector>
     </Animated.View>
@@ -266,10 +271,6 @@ const styles = StyleSheet.create({
   row: {
     justifyContent: "space-between",
   },
-  cardWrapper: {
-    // width: CARD_WIDTH,
-    marginBottom: 16,
-  },
   card: {
     backgroundColor: "white",
     borderRadius: 16,
@@ -384,27 +385,43 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  successOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(16, 185, 129, 0.95)",
+  iconAlert: {
+    position: "absolute",
+    top: -10,
+    right: -10,
+    height: 24,
+    borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 16,
+    zIndex: 10,
   },
-  successContent: {
-    alignItems: "center",
-  },
-  successIcon: {
-    fontSize: 48,
+
+  iconAlertText: {
     color: "white",
     fontWeight: "bold",
-    marginBottom: 8,
   },
-  successText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
+
+  // successOverlay: {
+  //   ...StyleSheet.absoluteFillObject,
+  //   backgroundColor: "rgba(16, 185, 129, 0.95)",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   borderRadius: 16,
+  // },
+  // successContent: {
+  //   alignItems: "center",
+  // },
+  // successIcon: {
+  //   fontSize: 48,
+  //   color: "white",
+  //   fontWeight: "bold",
+  //   marginBottom: 8,
+  // },
+  // successText: {
+  //   color: "white",
+  //   fontSize: 16,
+  //   fontWeight: "bold",
+  // },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",

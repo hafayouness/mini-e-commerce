@@ -88,7 +88,6 @@ export default function Index() {
           </TouchableOpacity>
         </View>
       </View>
-
       <View style={styles.categoriesSection}>
         <ScrollView
           horizontal
@@ -132,7 +131,7 @@ export default function Index() {
           ))}
         </ScrollView>
       </View>
-
+      a
       {loading ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#8B5CF6" />
@@ -157,7 +156,7 @@ export default function Index() {
             <ProductCard
               item={item}
               index={index}
-              onPress={() => router.push("./Cart")}
+              onPress={() => router.push(`./details?id=${item.id}`)}
               onAddToCart={() => handleAddToCart(item)}
               showSuccess={showAddSuccess === item.id}
             />
@@ -181,7 +180,8 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "#8B5CF6",
-    // paddingTop: Platform.OS === "ios" ? 60 : StatusBar.currentHeight! + 20,
+    paddingTop: 15,
+
     paddingBottom: 20,
   },
   headerContent: {
@@ -432,27 +432,27 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  successOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(16, 185, 129, 0.95)",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 16,
-  },
-  successContent: {
-    alignItems: "center",
-  },
-  successIcon: {
-    fontSize: 48,
-    color: "white",
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
-  successText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
+  // successOverlay: {
+  //   ...StyleSheet.absoluteFillObject,
+  //   backgroundColor: "rgba(16, 185, 129, 0.95)",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   borderRadius: 16,
+  // },
+  // successContent: {
+  //   alignItems: "center",
+  // },
+  // successIcon: {
+  //   fontSize: 48,
+  //   color: "white",
+  //   fontWeight: "bold",
+  //   marginBottom: 8,
+  // },
+  // successText: {
+  //   color: "white",
+  //   fontSize: 16,
+  //   fontWeight: "bold",
+  // },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",

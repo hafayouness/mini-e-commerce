@@ -91,7 +91,7 @@ export default function SplashScreen() {
       </Animated.View>
 
       <Animated.View style={[styles.footer, textAnimatedStyle]}>
-        <Text style={styles.version}>v1.0.0</Text>
+        <Text style={styles.version}>by youness hafa</Text>
       </Animated.View>
     </View>
   );

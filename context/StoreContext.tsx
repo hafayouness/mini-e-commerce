@@ -74,6 +74,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
       }
 
       const data: Product[] = await response.json();
+      console.log(data);
       setProducts(data);
     } catch (err) {
       console.error("Erreur:", err);

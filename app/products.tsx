@@ -20,7 +20,7 @@ const { width } = Dimensions.get("window");
 
 export default function index() {
   const { products, addToCart, loading, error } = useStore();
-  console.log(products);
+ 
 
   const fadeAnim = useSharedValue(0);
 
