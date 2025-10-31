@@ -189,7 +189,7 @@ export default function CartPage() {
             Ajoutez des produits pour commencer vos achats
           </Text>
           <TouchableOpacity
-            onPress={() => router.push("./products?categories=all")}
+            onPress={() => router.back()}
             style={styles.emptyButton}
           >
             <Text style={styles.emptyButtonText}>Découvrir les produits</Text>

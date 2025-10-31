@@ -87,7 +87,7 @@ export default function details() {
     })
     .onEnd((e) => {
       if (e.translationY > 100) {
-        runOnJS(handleClose)();
+        handleClose();
       } else {
         translateY.value = withSpring(0);
       }
